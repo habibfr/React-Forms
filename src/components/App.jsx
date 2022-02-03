@@ -9,8 +9,10 @@ function App() {
     setName(event.target.value);
   }
 
-  function handelClick() {
+  function handelClick(event) {
     setHeading(name);
+
+    event.preventDefault();
   }
 
   function handleMouseOver() {
@@ -24,20 +26,21 @@ function App() {
   return (
     <div className="container">
       <h1>Hello {heading}</h1>
-      <input
-        onChange={handleOnChange}
-        type="text"
-        placeholder="What's your name?"
-        value={name}
-      />
-      <button
-        style={{ backgroundColor: isMouseOver ? "black" : "white" }}
-        onClick={handelClick}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-      >
-        Submit
-      </button>
+      <form onSubmit={handelClick}>
+        <input
+          onChange={handleOnChange}
+          type="text"
+          placeholder="What's your name?"
+          value={name}
+        />
+        <button
+          style={{ backgroundColor: isMouseOver ? "black" : "white" }}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
